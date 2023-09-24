@@ -1,0 +1,41 @@
+# Ignore node_modules directory
+node_modules/
+/backend/node_modules/
+/frontend/node_modules/
+
+# Ignore build and distribution directories
+dist/
+build/
+out/
+*.log
+
+# Ignore environment-specific configuration files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignore package-lock.json or yarn.lock files
+package-lock.json
+yarn.lock
+
+# Ignore IDE and code editor files
+.idea/
+.vscode/
+*.code-workspace
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled files
+*.min.js
+*.min.css
+
+# Ignore dependencies and assets that can be generated from the source code
+/assets/*
+
+# Ignore sensitive or local configuration files
+config.local.js
+secrets.json
