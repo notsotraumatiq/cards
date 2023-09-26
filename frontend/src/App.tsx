@@ -30,32 +30,42 @@ function App({ socketRef, player, setPlayer }: AppProps) {
   };
 
   return (
-    <div className="text-center h-screen justify-center">
-      <h1 className="text-3xl">Card War</h1>
-      <h2>
-        Rules: Each player draws 5 cards, the lowest is ace and the highest is a
-        king, the player who has the highest cards wins
-      </h2>
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
-          const updatedPlayer: Player = { ...player };
-          updatedPlayer.playerName = playerName;
-          updatedPlayer.deckId = await getDeckId();
-          updatedPlayer.id = socketRef.id;
+    <div className="flex justify-center items-center h-screen text-center">
+      <div className="body">
+        <h1 className="text-3xl">Card War</h1>
+        <h2>
+          Rules: Each player draws 5 cards, the lowest is ace and the highest is
+          a king, the player who has the highest cards wins
+        </h2>
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
+            const updatedPlayer: Player = { ...player };
+            updatedPlayer.playerName = playerName;
+            updatedPlayer.deckId = await getDeckId();
+            updatedPlayer.id = socketRef.id;
 
-          setPlayer(updatedPlayer);
-          socketRef.emit("create-game", {
-            socketid: socketRef.id,
-            player: updatedPlayer,
-          });
-          navigate("/startgame");
-        }}
-      >
-        <label>Enter your name</label>
-        <input onChange={(event) => setPlayerName(event.target.value)}></input>
-        <button type="submit">Start Game</button>
-      </form>
+            setPlayer(updatedPlayer);
+            socketRef.emit("create-game", {
+              socketid: socketRef.id,
+              player: updatedPlayer,
+            });
+            navigate("/startgame");
+          }}
+        >
+          <label>Enter your name:</label>
+          <input
+            className="border-2 border-slate-700 rounded-md mx-2"
+            onChange={(event) => setPlayerName(event.target.value)}
+          ></input>
+          <button
+            className="rounded-md bg-slate-700 py-1 px-2 text-white  "
+            type="submit"
+          >
+            Start Game
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

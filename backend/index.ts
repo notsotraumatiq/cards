@@ -94,10 +94,10 @@ io.on("connection", (socket) => {
       const cardImages = cardsDrawn.map((card: Card) => card.image);
       const score = cardsDrawnValues.reduce((a, b) => a + b, 0);
       player.score += score;
-      if (player1.socketid === socket.id) {
+      if (player1 && player1.socketid === socket.id) {
         player1.player = player;
       }
-      if (player2.socketid === socket.id) {
+      if (player2 && player2.socketid === socket.id) {
         player2.player = player;
       }
       callback({ player, cardImages });
@@ -114,9 +114,9 @@ io.on("connection", (socket) => {
       winner = undefined;
     }
     if (winner === undefined) {
-      callback({ winner: "its a tie" });
+      callback("its a tie");
     } else {
-      callback({ winner: winner.playerName });
+      callback(winner.id);
     }
   });
   socket.on("disconnect", () => {
