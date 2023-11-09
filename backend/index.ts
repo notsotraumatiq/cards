@@ -44,9 +44,9 @@ interface SPlayer {
   socketid: string;
   player: Player;
 }
-var player1: SPlayer;
-var player2: SPlayer;
-var waitingPlayers: SPlayer[] = [];
+let player1: SPlayer;
+let player2: SPlayer;
+let waitingPlayers: SPlayer[] = [];
 io.on("connection", (socket) => {
   // store player and socket
   //  wait for 2 players to join
@@ -103,7 +103,6 @@ io.on("connection", (socket) => {
       callback({ player, cardImages });
     }
   );
-
   socket.on("compare-hands", (callback) => {
     let winner: Player | undefined;
     if (player1.player.score > player2.player.score) {
@@ -127,7 +126,6 @@ io.on("connection", (socket) => {
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });
-
 app.get("/startgame", (req: Request, res: Response) => {
   const getDeck = async () => {
     const deck = await axios.get(
